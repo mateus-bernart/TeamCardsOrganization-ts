@@ -4,6 +4,7 @@ import CampoTexto from "../CampoTexto";
 import ListaSuspensa from "../ListaSuspensa";
 import "./Formulario.css";
 import { IColaborador } from "../../compartilhado/interfaces/IColaborador";
+import CampoImagem from "../CampoImagem";
 
 interface FormularioProps {
   aoColaboradorCadastrado: (colaborador: IColaborador) => void;
@@ -13,7 +14,7 @@ interface FormularioProps {
 const Formulario = (props: FormularioProps) => {
   const [nome, setNome] = useState("");
   const [cargo, setCargo] = useState("");
-  const [imagem, setImagem] = useState("");
+  const [imagem, setImagem] = useState<File|null>(null);
   const [time, setTime] = useState("");
   const [data, setData] = useState("");
 
@@ -28,7 +29,7 @@ const Formulario = (props: FormularioProps) => {
     });
     setNome("");
     setCargo("");
-    setImagem("");
+    setImagem(null);
     setTime("");
     setData("");
   };
@@ -51,11 +52,11 @@ const Formulario = (props: FormularioProps) => {
           valor={cargo}
           aoAlterado={(valor) => setCargo(valor)}
         />
-        <CampoTexto
+        <CampoImagem 
+          aoAlterado={valor => setImagem(valor)}
           label="Imagem"
-          placeholder="Digite o endereço da imagem"
-          valor={imagem}
-          aoAlterado={(valor) => setImagem(valor)}
+          key={1}
+          obrigatorio={true}
         />
         <CampoTexto
           tipo="date"

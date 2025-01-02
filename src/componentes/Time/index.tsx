@@ -27,7 +27,7 @@ const Time = ({
             key={colaborador.nome}
             nome={colaborador.nome}
             cargo={colaborador.cargo}
-            imagem={colaborador.imagem}
+            imagem={colaborador.imagem ? URL.createObjectURL(colaborador.imagem) : ""}
             data={colaborador.data}
           />
         ))}
