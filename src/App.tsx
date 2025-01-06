@@ -3,6 +3,7 @@ import Formulario from "./componentes/Formulario";
 import Time from "./componentes/Time";
 import Banner from "./componentes/Banner";
 import { IColaborador } from "./compartilhado/interfaces/IColaborador";
+import Botao from "./componentes/Botao";
 
 function App() {
   const times = [
@@ -43,8 +44,8 @@ function App() {
     },
   ];
 
-  //UseState é uma lista de colaboradores definidas pelo generics (<IColaborador[]>)
   const [colaboradores, setColaboradores] = useState<IColaborador[]>([]);
+  const [showForm, setShowForm] = useState(false);
 
   const aoNovoColaboradorAdicionado = (colaborador: IColaborador) => {
     setColaboradores([...colaboradores, colaborador]);
@@ -56,12 +57,22 @@ function App() {
         enderecoImagem="/imagens/banner.png"
         textoAlternativo="O banner principal da página do Organo"
       />
-      <Formulario
-        times={times.map((time) => time.nome)}
-        aoColaboradorCadastrado={(colaborador) =>
-          aoNovoColaboradorAdicionado(colaborador)
-        }
-      />
+
+      <div style={{float: 'right', marginRight: '16px'}}>
+        <Botao onClick={() => setShowForm(!showForm)}>
+          {showForm ? "Cancelar" : "Adicionar novo colaborador"}
+        </Botao>
+      </div>
+
+      {showForm && (
+        <Formulario
+          times={times.map((time) => time.nome)}
+          aoColaboradorCadastrado={(colaborador) => {
+            aoNovoColaboradorAdicionado(colaborador);
+            setShowForm(false);
+          }}
+        />
+      )}
 
       {times.map((time) => (
         <Time
