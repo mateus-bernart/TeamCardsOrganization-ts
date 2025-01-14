@@ -1,6 +1,9 @@
 # Organo
 
 O Organo é aplicação desenvolvida no curso <a href="https://cursos.alura.com.br/course/react-desenvolvendo-javascript" target="_blank">React: desenvolvendo com JavaScript</a>.
+
+Reescrevido para TypeScript.
+
 Foi pensado e idealizado para ser o primeiro projeto em contato com o React.
 
 <img src="screencapture.png" alt="Imagem do Organo" width="50%">

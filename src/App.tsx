@@ -58,33 +58,35 @@ function App() {
         textoAlternativo="O banner principal da página do Organo"
       />
 
-      <div style={{float: 'right', marginRight: '16px'}}>
+      <div style={{ float: "right", marginRight: "24px" }}>
         <Botao onClick={() => setShowForm(!showForm)}>
           {showForm ? "Cancelar" : "Adicionar novo colaborador"}
         </Botao>
       </div>
 
-      {showForm && (
-        <Formulario
-          times={times.map((time) => time.nome)}
-          aoColaboradorCadastrado={(colaborador) => {
-            aoNovoColaboradorAdicionado(colaborador);
-            setShowForm(false);
-          }}
-        />
-      )}
+      <div style={{ clear: "both", marginTop: "24px" }}>
+        {showForm && (
+          <Formulario
+            times={times.map((time) => time.nome)}
+            aoColaboradorCadastrado={(colaborador) => {
+              aoNovoColaboradorAdicionado(colaborador);
+              setShowForm(false);
+            }}
+          />
+        )}
 
-      {times.map((time) => (
-        <Time
-          key={time.nome}
-          nome={time.nome}
-          corPrimaria={time.corPrimaria}
-          corSecundaria={time.corSecundaria}
-          colaboradores={colaboradores.filter(
-            (colaborador) => colaborador.time === time.nome
-          )}
-        />
-      ))}
+        {times.map((time) => (
+          <Time
+            key={time.nome}
+            nome={time.nome}
+            corPrimaria={time.corPrimaria}
+            corSecundaria={time.corSecundaria}
+            colaboradores={colaboradores.filter(
+              (colaborador) => colaborador.time === time.nome
+            )}
+          />
+        ))}
+      </div>
     </div>
   );
 }
